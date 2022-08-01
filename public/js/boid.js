@@ -41,7 +41,7 @@ export default class Boid {
     update(ctx) {
         this.draw(ctx)
 
-        let isTouchingLeftBorder = (this.x + this.radius) < 50
+        let isTouchingLeftBorder = (this.x + this.radius) < 20
         let isTouchingRightBorder = (this.x + this.radius) > window.innerWidth
         let isTouchingTopBorder = (this.y + this.radius) < 20
         let isTouchingBottomBorder = (this.y + this.radius) > window.innerHeight
