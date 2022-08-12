@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        canvas {
+canvas {
             border: 1px solid black;
             max-width: 100%;
             max-height: 100%;
@@ -19,7 +19,8 @@
 <title>Boids</title>
 </head>
 <body>
-    <canvas></canvas>
-    <script type="module" src="/js/main.js"></script>
+    <canvas id="canvas" resize></canvas>
+    <script type="text/javascript" src="/paper-core.js"></script>
+    <script type="module" src="/js/main.js" canvas="canvas"></script>
 </body>
 </html>
