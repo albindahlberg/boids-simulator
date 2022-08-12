@@ -4,56 +4,44 @@ export default class Boid {
     
     /**
      * Boids are a unit in the simulation
-     * @param {Number} x The position on the x-axis, MAX = window.innerWidth
-     * @param {Number} y The position on the y-axis, MAX = window.innerHeight
-     * @param {Number} angle The angle in radians the boid is moving from the x-axis. Functions similiarly to the unit circle 
+     * @param {*} paper The context drawn upon
      *   */
-    constructor(angle) {
-        this.radius = 10
-        this.velocity = 3
-
-        this.x = randomInt(this.radius, window.innerWidth - this.radius)  // this.radius to disable croppping upon spawning
-        this.y = randomInt(this.radius, window.innerHeight - this.radius) // this.radius to disable croppping upon spawning
-        this.angle = angle
-
-        this.dx = Math.cos(this.angle) * this.velocity
-        this.dy = -Math.sin(this.angle) * this.velocity // negative so it functions as unit circle
+    constructor(paper) {
+        this.position = new paper.Point(randomInt(0, window.innerWidth), randomInt(0, window.innerHeight));
+        this.velocity = new paper.Point(randomInt(-5, 5), randomInt(-5, 5));
+        this.velocity.angle = randomInt(0, 360);
+        this.acceleration = new paper.Point(0, 0);
+        this.path = new paper.Path.RegularPolygon(this.position, 3, 15);
+        this.path.fillColor = '#626262';
+        this.path.rotate(this.velocity.angle + 90);
     }    
 
-    /* TODO draw boid as arrow, create rotation etc */
     /**
-     * Draw the boid on the canvas
+    * Updates the position of the boid
      */
-    draw(ctx) {
-        ctx.beginPath()
+    update() {
+        let isTouchingRightBorder = this.path.position.x > window.innerWidth
+        let isTouchingLeftBorder = this.path.position.x < 0
+        let isTouchingTopBorder = this.path.position.y < 0
+        let isTouchingBottomBorder = this.path.position.y > window.innerWidth
 
-        ctx.fillStyle = '#0101FF'
-        ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI)
-        ctx.fill()
-        ctx.stroke()
-
-        ctx.closePath()
-    }
-
-    /**
-     * Updates the position of the boid
-     */
-    update(ctx) {
-        this.draw(ctx)
-
-        let isTouchingLeftBorder = (this.x + this.radius) < 20
-        let isTouchingRightBorder = (this.x + this.radius) > window.innerWidth
-        let isTouchingTopBorder = (this.y + this.radius) < 20
-        let isTouchingBottomBorder = (this.y + this.radius) > window.innerHeight
-
-        if(isTouchingLeftBorder || isTouchingRightBorder) {
-            this.dx = -this.dx
+                                
+        if(isTouchingLeftBorder){
+            this.path.position.x = window.innerWidth
         }
-        if(isTouchingBottomBorder || isTouchingTopBorder) {
-            this.dy = -this.dy
+        if(isTouchingRightBorder){
+            this.path.position.x = 0
+        }
+        if(isTouchingTopBorder){
+            this.path.position.y = window.innerHeight
+        }
+        if(isTouchingBottomBorder){
+            this.path.position.y = 0
         }
 
-        this.x += this.dx
-        this.y += this.dy
+        this.path.position.y += this.velocity.y
+        this.path.position.x += this.velocity.x
+        
+        this.velocity.add(this.acceleration);
     }
 }
