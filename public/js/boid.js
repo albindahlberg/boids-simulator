@@ -7,11 +7,11 @@ export default class Boid {
      * @param {*} paper The context drawn upon
      *   */
     constructor(paper) {
-        this.position = new paper.Point(randomInt(0, window.innerWidth), randomInt(0, window.innerHeight));
+        this.initialPosition = new paper.Point(randomInt(0, window.innerWidth), randomInt(0, window.innerHeight));
         this.velocity = new paper.Point(randomInt(-5, 5), randomInt(-5, 5));
         this.velocity.angle = randomInt(0, 360);
         this.acceleration = new paper.Point(0, 0);
-        this.path = new paper.Path.RegularPolygon(this.position, 3, 15);
+        this.path = new paper.Path.RegularPolygon(this.initialPosition, 3, 15);
         this.path.fillColor = '#626262';
         this.path.rotate(this.velocity.angle + 90);
     }    

@@ -1,13 +1,12 @@
 import Boid from "./boid.js"
-import { randomNumber } from './math.js'
 
 
 export default class Flock {
-    constructor(paper, number_of_boids) {
-        this.number_of_boids = number_of_boids;
+    constructor(paper, numberOfBoids) {
+        this.numberOfBoids = numberOfBoids;
         this.boids = [];
 
-        for(let index = 0; index < this.number_of_boids; index++) {
+        for(let index = 0; index < this.numberOfBoids; index++) {
             let boid = new Boid(paper);
             this.boids[index] = boid;
         }
