@@ -21,3 +21,8 @@ export var randomNumber = function(max) {
     const x = Math.random() // [0, 1]
     return x*max
 }
+
+export var applyForce = function(vectorA, vectorB){
+    vectorA.x += vectorB.x
+    vectorA.y += vectorB.y
+}

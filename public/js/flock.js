@@ -10,11 +10,15 @@ export default class Flock {
             let boid = new Boid(paper);
             this.boids[index] = boid;
         }
+
+        this.boids.forEach(boid => {
+            boid.addFlock(this.boids)
+        })
     }
 
-    update() {
+    update(paper) {
         this.boids.forEach(boid => {
-            boid.update();
+            boid.update(paper);
             }
         )
     }

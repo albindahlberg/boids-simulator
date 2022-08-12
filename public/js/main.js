@@ -9,10 +9,10 @@ canvas.height = window.innerHeight
 
 paper.setup(canvas);
 
-let numberOfBoids = 10
+let numberOfBoids = 7
 let flock = new Flock(paper, numberOfBoids)
 
 
 paper.view.onFrame = function(event){
-    flock.update()
+    flock.update(paper)
 }
