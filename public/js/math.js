@@ -21,3 +21,4 @@ export var randomNumber = function(max) {
     const x = Math.random() // [0, 1]
     return x*max
 }
+

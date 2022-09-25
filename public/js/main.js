@@ -1,4 +1,3 @@
-import Boid from './boid.js'
 import Flock from './flock.js'
 
 
@@ -9,10 +8,10 @@ canvas.height = window.innerHeight
 
 paper.setup(canvas);
 
-let number_of_boids = 10
-let flock = new Flock(paper, number_of_boids)
+let numberOfBoids = 60
+let flock = new Flock(paper, numberOfBoids)
 
 
 paper.view.onFrame = function(event){
-    flock.update()
+    flock.update(paper)
 }
