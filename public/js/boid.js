@@ -10,6 +10,7 @@ export default class Boid {
         this.position = new paper.Point(randomInt(0, window.innerWidth), randomInt(0, window.innerHeight));
         this.velocity = new paper.Point(randomInt(-5, 5), randomInt(-5, 5));
         this.velocity.angle = randomInt(0, 360);
+        this.velocity.length = 4
         this.neighborhood = 60
         this.maxVelocity = 5
 
@@ -53,7 +54,7 @@ export default class Boid {
 
         force.x /= neighborhoodCount
         force.y /= neighborhoodCount
-        force.length = 0.8
+        force.length = 0.6
         return force
     }
 
@@ -74,14 +75,14 @@ export default class Boid {
             force.x /= neighborhoodCount
             force.y /= neighborhoodCount
             force = new paper.Point(force.x - this.path.position.x, force.y - this.path.position.y)
-            force.length = 0.6
+            force.length = 0.5
         }
         return force
     }
 
     separation(paper){
         let force = new paper.Point()
-        let maxDistance = 40 
+        let maxDistance = 30 
         let count = 0
 
         this.boids.forEach(boid => {
@@ -137,11 +138,7 @@ export default class Boid {
         if(this.velocity.length > this.maxVelocity){
             this.velocity.length = this.maxVelocity
         }
-        console.log(this.velocity)
-        console.log(ali)
-        console.log(coh)
-        console.log(sep)
-        this.applyForce(this.path.position, this.velocity)
 
+        this.applyForce(this.path.position, this.velocity)
     }    
 }

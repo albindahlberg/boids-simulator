@@ -8,7 +8,7 @@ canvas.height = window.innerHeight
 
 paper.setup(canvas);
 
-let numberOfBoids = 60
+let numberOfBoids = 80
 let flock = new Flock(paper, numberOfBoids)
 
 
