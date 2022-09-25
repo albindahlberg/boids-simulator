@@ -22,7 +22,3 @@ export var randomNumber = function(max) {
     return x*max
 }
 
-export var applyForce = function(vectorA, vectorB){
-    vectorA.x += vectorB.x
-    vectorA.y += vectorB.y
-}

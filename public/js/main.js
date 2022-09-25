@@ -1,4 +1,3 @@
-import Boid from './boid.js'
 import Flock from './flock.js'
 
 
@@ -9,7 +8,7 @@ canvas.height = window.innerHeight
 
 paper.setup(canvas);
 
-let numberOfBoids = 7
+let numberOfBoids = 60
 let flock = new Flock(paper, numberOfBoids)
 
 
