@@ -1,1 +1,4 @@
-# boids-simulator
+# Boids
+
+A simulation of flocking behaviour.
+
